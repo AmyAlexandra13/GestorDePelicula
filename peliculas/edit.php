@@ -3,15 +3,16 @@ include '../layout/layout.php';
 include '../helpers/utilities.php';
 include 'serviceSession.php';
 
-$hero = null;
+$peli2 = null;
 if (isset($_GET["id"])) {
 
-    $hero = GetById($_GET["id"]);
+    $peli2 = GetById($_GET["id"]);
 
-    if(isset($_POST["HeroName"]) && isset($_POST["HeroDescription"]) && isset($_POST["CompanyId"])){
-        $hero = ["id"=> $_GET["id"], "name" => $_POST["HeroName"],"description"=>$_POST["HeroDescription"],"companyId"=>$_POST["CompanyId"]];
+    if(isset($_POST["Nombre-Peli"]) && isset($_POST["Descripcion-Peli"]) && isset($_POST["Genero-Peli"])){
+        $peli2 = ["id"=> $_GET["id"], "nombre-Peli"=>$_POST["Nombre-Peli"],"descripcion-Peli"=>$_POST["Descripcion-Peli"], "genero-Peli"=>$_POST["Genero-Peli"]];
        
-        Edit($hero);
+       
+        Edit($peli2);
 
         header("Location: ../index.php");
     }
@@ -34,27 +35,27 @@ if (isset($_GET["id"])) {
 
     <?php echo printHeader() ?>
 
-    <?php if ($hero == null && count($hero) == 0) : ?>
-        <h2>No existe este heroe</h2>
+    <?php if ($peli2 == null && count($peli2) == 0) : ?>
+        <h2>No existe esta pelicula</h2>
     <?php else : ?>
 
-        <form action="edit.php?id=<?= $hero["id"]?>" method="POST">
+        <form action="edit.php?id=<?= $peli2["id"]?>" method="POST">
             <div class="mb-3">
-                <label for="hero-name" class="form-label">Nombre del heroe</label>
-                <input name="HeroName" value="<?php echo $hero["name"]?>" type="text" class="form-control" id="hero-name">
+                <label for="nombre" class="form-label">Nombre de la pelicula</label>
+                <input name="Nombre-Peli" value="<?php echo $peli2["Nombre-Peli"]?>" type="text" class="form-control" id="nombre">
 
             </div>
             <div class="mb-3">
-                <label for="hero-description" class="form-label">Descripcion</label>
-                <input name="HeroDescription" value="<?php echo $hero["description"]?>" type="text" class="form-control" id="hero-description">
+                <label for="descripcion" class="form-label">Descripcion</label>
+                <input name="Descripcion-Peli" value="<?php echo $peli2["Descripcion-Peli"]?>" type="text" class="form-control" id="descripcion">
             </div>
             <div class="mb-3">
-                <label for="hero-company" class="form-label">Compañia</label>
-                <select name="CompanyId" class="form-select" id="hero-company">
+                <label for="genero" class="form-label">Genero de la pelicula</label>
+                <select name="Genero-Peli" class="form-select" id="genero">
                     <option value="">Seleccione una opcion</option>
-                    <?php foreach ($companies as $value => $text) : ?>
+                    <?php foreach ($genero as $value => $text) : ?>
 
-                        <?php if($value == $hero["companyId"]):?>
+                        <?php if($value == $peli2["Genero-Peli"]):?>
                             <option selected value="<?php echo $value; ?>"> <?= $text ?> </option>
                          <?php else :?>
                             <option value="<?php echo $value; ?>"> <?= $text ?> </option>

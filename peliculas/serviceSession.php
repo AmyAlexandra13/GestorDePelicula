@@ -3,37 +3,37 @@
 
     session_start();
 
-    $GLOBALS["sessionName"] = "Heroes";
+    $GLOBALS["sessionName"] = "Peliculas";
 
     function Add($item){
 
-        $heroes = GetList();
+        $peliculas = GetList();
 
-        if(count($heroes) == 0){
+        if(count($peliculas) == 0){
             $item["id"] = 1;
         }else{
 
-            $lastElement = getLastElement($heroes);
+            $lastElement = getLastElement($peliculas);
 
             $item["id"] = $lastElement["id"] + 1;
         }      
 
-        array_push($heroes, $item);
+        array_push($peliculas, $item);
 
-       $_SESSION[$GLOBALS["sessionName"]] = $heroes;         
+       $_SESSION[$GLOBALS["sessionName"]] = $peliculas;         
     }
 
     function Edit($item){      
 
-        $heroes = GetList();
-        $hero = GetById($item["id"]);
+        $peliculas = GetList();
+        $arraypelicula = GetById($item["id"]);
 
-        if($hero != null && count($hero) > 0 ){
+        if($peli != null && count($peli) > 0 ){
       
-            $index = getIndexElement($heroes,"id",$item["id"]);
-            $heroes[$index] = $item;
+            $index = getIndexElement($peliculas,"id",$item["id"]);
+            $peliculas[$index] = $item;
 
-            $_SESSION[$GLOBALS["sessionName"]] = $heroes;    
+            $_SESSION[$GLOBALS["sessionName"]] =  $peliculas;    
 
         }           
     }
@@ -41,20 +41,20 @@
 
     function GetList(){
 
-        $heroes = isset($_SESSION[$GLOBALS["sessionName"]]) ? $_SESSION[$GLOBALS["sessionName"]] : [];
+        $peliculas = isset($_SESSION[$GLOBALS["sessionName"]]) ? $_SESSION[$GLOBALS["sessionName"]] : [];
         
-        return $heroes;
+        return $peliculas;
 
     }
 
     
     function GetById($id){
 
-        $heroes = GetList();
+        $peliculas = GetList();
 
-        $heroe = searchProperty($heroes,"id",$id);     
+        $pelicula = searchProperty($peliculas,"id",$id);     
         
-        return $heroe[0];
+        return   $pelicula[0];
     }
 
 

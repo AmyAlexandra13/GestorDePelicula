@@ -44,7 +44,7 @@ $peliculas = GetList();
                     </div>
 
                     <div class="card-body">
-                        <a href="peliculas/edit.php?id=<?= $hero['id']?>" class="btn btn-primary">Editar</a>
+                        <a href="peliculas/edit.php?id=<?= $peli['id']?>" class="btn btn-primary">Editar</a>
                         <a href="#" class="btn btn-danger">Eliminar</a>
                     </div>
                 </div>
@@ -73,21 +73,23 @@ $peliculas = GetList();
                 <form method="POST" action="peliculas/add.php">
                     <div class="mb-3">
                        
-        <label for="nombre" id="nombrepelicula">Nombre</label>
-          <input name="Nombre-Peli" type="text" class="form-control" id="nombrepelicula">
+        <label for="nombre">Nombre</label>
+          <input name="Nombre-Peli" type="text" class="form-control" id="nombre">
                     </div>
 
 
                     <div class="mb-3">
-                    <label for="descripcion" id="descripcionpelicula">Descripcion</label>
-          <input name="Descripcion-Peli" type="text" class="form-control" id="descripcionpelicula">
+                    <label for="descripcion" class="form-label">Descripcion</label>
+          <input name="Descripcion-Peli" type="text" class="form-control" id="descripcion">
       
                     </div>
 
 
+
+
                     <div class="mb-3">
-        <label for="genero" id="generopelicula">Genero</label>
-          <select name="Genero-Peli" class="form-select" id="generopelicula"> 
+        <label for="genero" class="form-label">Genero</label>
+          <select name="Genero-Peli" class="form-select"> 
             <option value="">Selecciona una opcion</option>
               <?php foreach ($genero as $id => $text):?>
 
@@ -95,7 +97,16 @@ $peliculas = GetList();
               <?php endforeach;?>
 
 </select>
-      </div>
+
+
+<div class="form-check">
+  <input name="Peli-Active" class="form-check-input" type="checkbox" value="activo" id="flexCheckChecked" checked>
+  <label class="form-check-label" for="flexCheckChecked">
+  Activo
+  </label>
+</div>
+
+
           
 
 
